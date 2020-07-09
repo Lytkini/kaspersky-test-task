@@ -10,9 +10,10 @@ Windows API это набор функций, хранящихся в неупр
 
 ## Using the `CopyFile` function with the `Add-Type` cmdlet
 
-The `Add-Type` cmdlet allows to use .NET Framework classes within a PowerShell session.
+The `Add-Type` cmdlet allows you to use .NET Framework classes within a PowerShell session.
 
-To call Windows API functions the cmdlet uses the P/Invoke mechanism. The mechanism works with methods that have the same C# signatures as the Windows API functions defined in C++. More information on C# signatures of common Windows API functions you can find at the [pinvoke.net wiki](http://www.pinvoke.net/).
+
+The cmdlet uses the P/Invoke mechanism to call Windows API functions. The mechanism works with methods with the same C# signatures as the Windows API functions defined in C++. More information on C# signatures of Windows API functions you can find at the [pinvoke.net wiki](http://www.pinvoke.net/).
 
 *To call the `CopyFile` function with the `Add-Type` cmdlet:*
 
@@ -27,7 +28,7 @@ To call Windows API functions the cmdlet uses the P/Invoke mechanism. The mechan
    '@
    ```   
 
-   >To use within a PowerShell session the defined method must have public access modifier.
+   The defined method must have public access modifier so you can access it within a PowerShell session.
 
 3. Use the `Add-Type` cmdlet to add the method to a new variable:
    
@@ -35,7 +36,7 @@ To call Windows API functions the cmdlet uses the P/Invoke mechanism. The mechan
    $Kernel32 = Add-Type -MemberDefinition $MethodDefinition -Name "Kernel32" -Namespace "Win32" -PassThru
    ```
 
-   The `PassThru` parameter commands PowerShell to pass created object.
+   The `PassThru` parameter commands PowerShell to pass the created object.
 
 4. Use the `$Kernal32` object to call the `CopyFile` function:
 
@@ -43,7 +44,7 @@ To call Windows API functions the cmdlet uses the P/Invoke mechanism. The mechan
    $Kernel32::CopyFile("C:\sample.txt", "C:\example\sample.txt", $False)
    ```
 
-Using the described procedure you can create your own functions which implement Windows APIs. See the example:
+Using the described procedure, you can create functions that implement Windows APIs. See the example:
 
 ```powershell
 function Copy-RawItem
