@@ -8,10 +8,9 @@ Windows API это набор функций, хранящихся в неупр
 
 >Описанный способ взаимодействия работает только в ОС Windows.
 
-## Using the `CopyFile` function with the `Add-Type` cmdlet
+## Calling the `CopyFile` function with the `Add-Type` cmdlet
 
 The `Add-Type` cmdlet allows you to use .NET Framework classes within a PowerShell session.
-
 
 The cmdlet uses the P/Invoke mechanism to call Windows API functions. The mechanism works with methods with the same C# signatures as the Windows API functions defined in C++. More information on C# signatures of Windows API functions you can find at the [pinvoke.net wiki](http://www.pinvoke.net/).
 
@@ -28,7 +27,7 @@ The cmdlet uses the P/Invoke mechanism to call Windows API functions. The mechan
    '@
    ```   
 
-   The defined method must have public access modifier so you can access it within a PowerShell session.
+   >The defined method must have public access modifier so you can access it within a PowerShell session.
 
 3. Use the `Add-Type` cmdlet to add the method to a new variable:
    
@@ -38,7 +37,7 @@ The cmdlet uses the P/Invoke mechanism to call Windows API functions. The mechan
 
    The `PassThru` parameter commands PowerShell to pass the created object.
 
-4. Use the `$Kernal32` object to call the `CopyFile` function:
+4. Use the `$Kernel32` object to call the `CopyFile` function:
 
    ```powershell
    $Kernel32::CopyFile("C:\sample.txt", "C:\example\sample.txt", $False)
